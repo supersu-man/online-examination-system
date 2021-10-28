@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
+        <link href="./css/style.css" rel="stylesheet" type="text/css">
+        <link rel="icon" type="image/png" href="../icon.png">
+        <title>Online Examination System</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="formContent">
+                <h4 id="question">
+                    <b>Q. which option best describes your job role?</b>
+                </h4>
+                <div class="options">
+                    <label class="option">
+                        <h7 id="a">Small Business Owner or Employee</h7>
+                        <input type="radio" name="radio" id="optionA">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="option" >
+                        <h7 id="b">Small Business Owner or Employee</h7>
+                        <input type="radio" name="radio" id="optionB">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="option">
+                        <h7 id="c">Journalist or Activis</h7>
+                        <input type="radio" name="radio" id="optionC">
+                        <span class="checkmark"></span> 
+                    </label> 
+                    <label class="option">
+                        <h7 id="c">Other</h7>
+                        <input type="radio" name="radio" id="optionD"> 
+                        <span class="checkmark"></span> 
+                    </label> 
+                </div>
+                <div class="buttons">
+                    <input type = "submit" id="prev" value="Previous"/>
+                    <input type = "submit" id="save" value="Save"/>
+                    <input type = "submit" id="nxt" value="Next"/>
+                </div>
+            </div>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.min.js" ></script>
+        <script src="./index.js" type="module"></script>
+    </body>
+</html>
