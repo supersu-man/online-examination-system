@@ -101,10 +101,13 @@ async function addColumns(callback) {
 }
 
 function createTable() {
-    db.query("DROP TABLE marks;")
-    db.query("CREATE TABLE marks ( studentId VARCHAR(15) PRIMARY KEY);")
-    addColumns(()=>{
-        console.log("Added columns")
+    db.query("DROP TABLE marks;", (err)=>{})
+    db.query("CREATE TABLE marks ( studentId VARCHAR(15) PRIMARY KEY);",(err)=>{
+        if(!err){
+            addColumns(()=>{
+                console.log("Added columns")
+            })
+        }
     })
 }
 
