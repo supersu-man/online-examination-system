@@ -105,8 +105,10 @@ function createTable() {
     db.query("CREATE TABLE marks ( studentId VARCHAR(15) PRIMARY KEY);",(err)=>{
         if(!err){
             addColumns(()=>{
-                console.log("Added columns")
+                console.log("Successfully Connected to database")
             })
+        }else{
+            console.log("Unable to connect to Database")
         }
     })
 }

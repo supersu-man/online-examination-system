@@ -44,6 +44,16 @@ $(()=> {
             })
         }
     })
+    $('#logout').on('click', () => {
+        Cookies.remove('username')
+        Cookies.remove('password')
+        window.location.href = "./login.html"
+    });
+
+    $('#menu-button').on('click',() => {
+        $('#menu-button').toggleClass('active');
+        $('#sidebar').toggleClass('active');
+    });
 })
 
 function checkForSession(){
