@@ -1,19 +1,5 @@
-body {
-    font-family: "Poppins", sans-serif;
-    height: 100vh;
-}
 
-.wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column; 
-    position: relative;
-    width: 100%;
-    min-height: 100%;
-    padding: 20px;
-}
-
-#sidebar {
+.sidebar {
     height: 95%; 
     width: 160px;
     position: fixed;
@@ -25,27 +11,11 @@ body {
     flex-direction: column; 
     margin: 20px;
     margin-left: -180px;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: 0 5px 10px 0px rgba(0,0,0,0.3);
     transition: all 0.4s;
   }
 
-#sidebar.active {
+.sidebar.active {
     margin-left: 20px;
-}
-
-#menu-button{
-    margin-left: 10px;
-    transition: all 0.4s;
-}
-
-#menu-button:active{
-    transform: scale(0.3);
-}
-
-
-#menu-button.active {
-    margin-left: 200px;
 }
 
 .list-each{
@@ -69,38 +39,6 @@ ul {
     list-style: none;
     display: grid;
     gap: 0.5rem;
-  }
-
-.card {
-    border-radius: 10px 10px 10px 10px;
-    padding: 30px;
-    box-shadow: 0 5px 10px 0px rgba(0,0,0,0.3);
-}
-
-.card-1 {
-    align-items: center;
-    max-width: 450px;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%) ;
-}
-
-.card-2 {
-    width: 90%;
-    position: absolute;
-    position:sticky;
-    top: 50%;
-    transform: translate(0, -50%);
-}
-
-.navbar {
-    align-items: center;
-    flex-direction: row;
-    position: relative;
-    height: auto;
-    padding: 10px;
-    align-content: space-between;
-    width: 100%;
 }
 
 input[type=submit] {

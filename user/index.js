@@ -48,10 +48,14 @@ $(()=> {
         window.location.href = "./login.html"
     });
 
-    $('#menu-button').on('click',() => {
-        $('#menu-button').toggleClass('active');
-        $('#sidebar').toggleClass('active');
+    $('#menu-button').on('mouseover',() => {
+        $('.sidebar').toggleClass('active');
     });
+
+    $('.sidebar').on('mouseleave',() => {
+        $('.sidebar').removeClass('active');
+    });
+
 
     $('#question-list').on('click', '.list-each', function(){
         var id = $(this).attr('id')
