@@ -39,6 +39,11 @@ body {
     transition: all 0.4s;
 }
 
+#menu-button:active{
+    transform: scale(0.3);
+}
+
+
 #menu-button.active {
     margin-left: 200px;
 }
@@ -47,11 +52,15 @@ body {
     list-style-type: none;
     padding-left: 10px;
     border-radius: 10px 10px 10px 10px;
-    transition: all 0.3s;
+    transition: all 0.2s;
 }
 .list-each:hover {
     background-color: #56bbeda4;
     color: white;
+}
+
+.list-each:active{
+    transform: scale(0.95);
 }
 
 ul {

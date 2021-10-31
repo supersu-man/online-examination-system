@@ -9,6 +9,7 @@ $(()=> {
 
     setQuestionsData(()=>{
         setOptionsData()
+        setNavbarData()
     })
     
     $('#prev').on('click',() => {
@@ -25,11 +26,7 @@ $(()=> {
     })
 
     $('#save').on('click',() => {
-        saveOptionData((data)=>{
-            if(data){
-                
-            }
-        })
+        saveOptionData((data)=>{})
     })
 
     $('#nxt').on('click',() => {
@@ -44,6 +41,7 @@ $(()=> {
             })
         }
     })
+
     $('#logout').on('click', () => {
         Cookies.remove('username')
         Cookies.remove('password')
@@ -54,6 +52,15 @@ $(()=> {
         $('#menu-button').toggleClass('active');
         $('#sidebar').toggleClass('active');
     });
+
+    $('#question-list').on('click', '.list-each', function(){
+        var id = $(this).attr('id')
+        qNum = id.slice(-1)
+        setQuestionsData(()=>{
+            setOptionsData()
+        })
+    });
+
 })
 
 function checkForSession(){
@@ -66,6 +73,13 @@ function checkForSession(){
             }
         })
     })
+}
+
+function setNavbarData(){
+    for (let index = 0; index < qArray.length; index++) {
+        var q = `<li id="list-each-Q${index+1}" class="list-each">Q${index+1}</li>`
+        $('#question-list').append(q) 
+    }
 }
 
 function setQuestionsData(callback){
@@ -98,7 +112,6 @@ function setOptionsData() {
             }else{
                 $('#option'+option).prop("checked", true)
             }
-            console.log(option)
         } catch (error) {}
     })
 }
@@ -161,6 +174,9 @@ function loginValidation(username, password, callback){
         data: JSON.stringify(formData),
         success: (data)=>{
             callback(data)
+        },
+        error : ()=>{
+            window.location.href = "./login.html"
         }
     })
 }
