@@ -40,8 +40,16 @@ app.post('/login', (req,res) => {
 
 app.post('/createUser', (req,res) => {
     if(req.body['username']){
-        createUser(req.body['username'],()=>{
-            res.send(true)
+        createUser(req.body['username'],(bool)=>{
+            res.send(bool)
+        })
+    }
+})
+
+app.post('/addUser', (req,res) => {
+    if(req.body['username'] && req.body['password']){
+        addUser(req.body['username'], req.body['password'],(bool)=>{
+            res.send(bool)
         })
     }
 })
@@ -128,12 +136,20 @@ async function getCSVData(callback) {
 
 function createUser(username,callback){
     db.query(`INSERT INTO marks (studentId) VALUES ('${username}');`, (err)=>{
-        if(!err){
-            callback()
-        }else if(err.code == "ER_DUP_ENTRY"){
-            callback()
+        if(!err || err.code == "ER_DUP_ENTRY"){
+            callback(true)
         }else{
-            console.log(err.code)
+            console.log(false)
+        }
+    })
+}
+
+function addUser(username, password, callback){
+    db.query(`INSERT INTO users (username, password) VALUES ('${username}','${password}');`, (err) => {
+        if(!err){
+            callback(true)
+        }else{
+            callback(false)
         }
     })
 }

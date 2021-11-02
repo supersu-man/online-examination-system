@@ -3,7 +3,7 @@ import Cookies from "../node_modules/js-cookie/dist/js.cookie.mjs"
 let qNum = 1
 let qArray = []
 
-$(()=> {
+$(() => {
 
     checkForSession()
 

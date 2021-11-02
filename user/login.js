@@ -5,7 +5,6 @@ $(()=>{
     $('#loginButton').on('click', ()=>{
         var username = $('#username').val()
         var password = $('#password').val()
-        console.log(Cookies.get('username'))
         loginValidation(username, password, (data)=>{
             if(data){
                 saveCredentials(username,password)
@@ -14,6 +13,10 @@ $(()=>{
                 console.log("Invalid Login.")
             }
         })
+    })
+
+    $('#registerButton').on('click', () =>{
+        window.location.href="../admin/registration.html"
     })
 })
 
