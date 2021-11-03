@@ -16,7 +16,8 @@ cd into the project directory and
     npm install
     
 ## Usage
-- Start Mysql server and login to your database using Mysql client or Workbench. (make sure you have table called 'users' with column names 'username' and 'password')
+- Make sure you have table called 'users' with columns ('username', 'password','email') and table called 'admin' with columns ('username','password').
+- Add a username and password in admin.
 - Edit resources/questions.csv file and put your own questions.
 - Add your mysql credentials to server/db.js file.
 - Run server/server.js.
