@@ -22,6 +22,18 @@ app.get("/getQuestions", (req,res) => {
     })
 })
 
+app.get("/getGrades", (req,res) => {
+    getGrades((result)=>{
+        res.send(result)
+    })
+})
+
+app.get("/getCSV", (req,res) => {
+    getCSVData((result)=>{
+        res.send(result)
+    })
+})
+
 app.post('/saveOption', (req,res) => {
     if(req.body['option'] != undefined){
         saveOptionData(req.body,()=>{
@@ -48,12 +60,19 @@ app.post('/createUser', (req,res) => {
 
 app.post('/addUser', (req,res) => {
     if(req.body['username'] && req.body['password']){
-        addUser(req.body['username'], req.body['password'],(bool)=>{
+        addUser(req.body['username'], req.body['password'],  req.body['email'],(bool)=>{
             res.send(bool)
         })
     }
 })
 
+app.post('/addAdmin', (req,res) => {
+    if(req.body['username'] && req.body['password']){
+        loginAdmin(req.body['username'], req.body['password'], (bool) =>{
+            res.send(bool)
+        })
+    }
+})
 
 
 app.listen(PORT, ()=>{
@@ -62,11 +81,21 @@ app.listen(PORT, ()=>{
 })
 
 function getOptions(username, callback){
-    db.query(`SELECT * FROM marks WHERE studentId = ${username}`, (err,result)=>{
+    db.query(`SELECT * FROM marks WHERE studentId = '${username}'`, (err,result)=>{
         if(!err) {
             callback(result)
         }else{
             console.log(err)
+        }
+    })
+}
+
+function getGrades(callback){
+    db.query(`SELECT * FROM marks`, (err,result)=>{
+        if(!err) {
+            callback(result)
+        }else{
+            callback(false)
         }
     })
 }
@@ -78,6 +107,23 @@ function loginValidation(username, password, callback){
                 var realPass = result[0]['password']
                 var login = realPass==password
                 callback(login)
+            }
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+function loginAdmin(username, password, callback){
+    try {
+        db.query(`SELECT password FROM admin WHERE username='${username}'`, (err,result)=>{
+            if(!err){
+                var realPass = result[0]['password']
+                var login = realPass==password
+                callback(login)
+            }
+            else{
+                callback(false)
             }
         })
     } catch (error) {
@@ -144,8 +190,18 @@ function createUser(username,callback){
     })
 }
 
-function addUser(username, password, callback){
-    db.query(`INSERT INTO users (username, password) VALUES ('${username}','${password}');`, (err) => {
+function addUser(username, password, email, callback){
+    db.query(`INSERT INTO users (username, password, email) VALUES ('${username}','${password}', '${email}');`, (err) => {
+        if(!err){
+            callback(true)
+        }else{
+            callback(false)
+        }
+    })
+}
+
+function addAdmin(username, password, callback){
+    db.query(`INSERT INTO admin (username, password) VALUES ('${username}','${password}');`, (err) => {
         if(!err){
             callback(true)
         }else{

@@ -4,12 +4,14 @@ $(()=>{
     })
     $('#registerButton').on('click', ()=>{
         var username = $('#username').val()
+        var email  = $('#email').val()
+        console.log(email)
         var password1 = $('#password1').val()
         var password2 = $('#password2').val()
         if(password1 != password2){
             alert("Passwords don't match")
         } else{
-            var formData = {'username' : username, 'password': password1}
+            var formData = {'username' : username, 'password': password1, 'email' : email}
             $.ajax({
                 timeout: 5000,
                 method: 'post',
